@@ -4,14 +4,19 @@
   "scripts": {
     "dev": "vinxi dev",
     "build": "vinxi build",
-    "start": "vinxi start"
+    "start": "vinxi start",
+    "lint": "echo 'Add your lint command here'",
+    "prepare": "lefthook install"
   },
   "private": true,
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "@types/bun": "latest",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.3.4",
+    "lefthook": "^1.11.10",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "peerDependencies": {

@@ -1,0 +1,10 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: bun lint {staged_files}
+commit-msg:
+  commands:
+    lint-commit-msg:
+      run: bun commitlint --edit {1}
