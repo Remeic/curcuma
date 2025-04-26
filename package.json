@@ -8,8 +8,10 @@
     "lint": "echo 'Add your lint command here'",
     "prepare": "lefthook install",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "bun app/db/migrate.ts",
-    "db:studio": "bun x drizzle-kit studio"
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push:pg",
+    "db:drop": "drizzle-kit drop",
+    "db:studio": "drizzle-kit studio"
   },
   "private": true,
   "devDependencies": {

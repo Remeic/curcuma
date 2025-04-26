@@ -6,6 +6,6 @@ export default defineConfig({
   out: "./app/db/migrations",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.VITE_DATABASE_URL!,
+    url: process.env.DATABASE_URL!,
   },
 });

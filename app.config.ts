@@ -7,6 +7,8 @@ export default defineConfig({
     preset: "vercel",
   },
   vite: {
+    // Allow DATABASE_ variables to be used like VITE_ variables
+    envPrefix: ["VITE_", "DATABASE_"],
     plugins: [
       tsConfigPaths({
         projects: ["./tsconfig.json"],
