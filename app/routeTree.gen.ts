@@ -10,112 +10,112 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as LayoutImport } from "./routes/_layout";
-import { Route as IndexImport } from "./routes/index";
-import { Route as LayoutNewMemoImport } from "./routes/_layout.new-memo";
+import { Route as rootRoute } from './routes/__root'
+import { Route as LayoutImport } from './routes/_layout'
+import { Route as IndexImport } from './routes/index'
+import { Route as LayoutNewMemoImport } from './routes/_layout.new-memo'
 
 // Create/Update Routes
 
 const LayoutRoute = LayoutImport.update({
-  id: "/_layout",
+  id: '/_layout',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const IndexRoute = IndexImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const LayoutNewMemoRoute = LayoutNewMemoImport.update({
-  id: "/new-memo",
-  path: "/new-memo",
+  id: '/new-memo',
+  path: '/new-memo',
   getParentRoute: () => LayoutRoute,
-} as any);
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/_layout": {
-      id: "/_layout";
-      path: "";
-      fullPath: "";
-      preLoaderRoute: typeof LayoutImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/_layout/new-memo": {
-      id: "/_layout/new-memo";
-      path: "/new-memo";
-      fullPath: "/new-memo";
-      preLoaderRoute: typeof LayoutNewMemoImport;
-      parentRoute: typeof LayoutImport;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/_layout': {
+      id: '/_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof LayoutImport
+      parentRoute: typeof rootRoute
+    }
+    '/_layout/new-memo': {
+      id: '/_layout/new-memo'
+      path: '/new-memo'
+      fullPath: '/new-memo'
+      preLoaderRoute: typeof LayoutNewMemoImport
+      parentRoute: typeof LayoutImport
+    }
   }
 }
 
 // Create and export the route tree
 
 interface LayoutRouteChildren {
-  LayoutNewMemoRoute: typeof LayoutNewMemoRoute;
+  LayoutNewMemoRoute: typeof LayoutNewMemoRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutNewMemoRoute: LayoutNewMemoRoute,
-};
+}
 
 const LayoutRouteWithChildren =
-  LayoutRoute._addFileChildren(LayoutRouteChildren);
+  LayoutRoute._addFileChildren(LayoutRouteChildren)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "": typeof LayoutRouteWithChildren;
-  "/new-memo": typeof LayoutNewMemoRoute;
+  '/': typeof IndexRoute
+  '': typeof LayoutRouteWithChildren
+  '/new-memo': typeof LayoutNewMemoRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "": typeof LayoutRouteWithChildren;
-  "/new-memo": typeof LayoutNewMemoRoute;
+  '/': typeof IndexRoute
+  '': typeof LayoutRouteWithChildren
+  '/new-memo': typeof LayoutNewMemoRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
-  "/_layout": typeof LayoutRouteWithChildren;
-  "/_layout/new-memo": typeof LayoutNewMemoRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/_layout': typeof LayoutRouteWithChildren
+  '/_layout/new-memo': typeof LayoutNewMemoRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "" | "/new-memo";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "" | "/new-memo";
-  id: "__root__" | "/" | "/_layout" | "/_layout/new-memo";
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '' | '/new-memo'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '' | '/new-memo'
+  id: '__root__' | '/' | '/_layout' | '/_layout/new-memo'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  LayoutRoute: typeof LayoutRouteWithChildren;
+  IndexRoute: typeof IndexRoute
+  LayoutRoute: typeof LayoutRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LayoutRoute: LayoutRouteWithChildren,
-};
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
