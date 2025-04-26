@@ -1,5 +1,3 @@
-import { drizzle } from "drizzle-orm/libsql";
-import { createClient } from "@libsql/client";
 import { memosTable } from "./schema";
 import { db } from "../../db";
 
@@ -20,19 +18,3 @@ export async function createMemo(content: string) {
 
   return result[0];
 }
-
-// // Funzione per aggiornare una memo
-// export async function updateMemo(id: string, content: string) {
-//   return db
-//     .update(memosTable)
-//     .set({
-//       content,
-//       updated_at: sql`(strftime('%s', 'now'))`,
-//     })
-//     .where(eq(memosTable.id, id));
-// }
-
-// // Funzione per eliminare una memo
-// export async function deleteMemo(id: string) {
-//   return db.delete(memosTable).where(eq(memosTable.id, id));
-// }
